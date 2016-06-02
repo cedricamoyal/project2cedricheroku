@@ -7,9 +7,12 @@
 
 
 
-  <% @locations.each do |location| %>
+  <% sorted_locations = @locations.sort {|l1, l2| l1.name <=> l2.name } %>
+  <% sorted_locations.each do |location| %>
+
       <% sorted_countries = location.countries.sort {|c1, c2| c1.name <=> c2.name } %>
       <% sorted_countries.each do |country| %>
+
             <div class='col-md-4'>
                 <div class="stepsDetailsShow">
 
