@@ -58,6 +58,14 @@
               <h5>Country: <span><%= link_to visit.country.name, "/countries/#{visit.country.id}" %></span></h5>
               <h5>Description: <span><%= truncate( visit.description, :length => 300)%></span></h5>
 
+                <br>
+
+              <div class='row text-center'>
+              <button type='button' class='btn btn btn-default'><%= link_to "Edit Step", edit_step_path( @step ), :class => "links" %></button>
+
+              <button type='button' class='btn btn btn-default'><%= link_to "Delete Step", @step, :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => "links" %></button>
+              </div>
+
       </div>
     </div>
 
