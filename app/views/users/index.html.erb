@@ -7,19 +7,21 @@
                 <h2>All the users:</h2>
               </div>
           </div>
-
+</div>
 
       <% @users.each do |user| %>
+  <div class='container'>
       <div class='col-md-4'>
         <div class="stepsDetailsShow">
 
-            <h5>Username: <%= link_to( user.name, user_path(user) ) %></h5>
-            <h5>Email: <%= user.email %></h5>
+            <h5>Username: <span><%= link_to( user.name, user_path(user) ) %></span></h5>
+            <h5>Email: <span><%= user.email %></span></h5>
             <%= link_to(image_tag( user.image, :class => 'thumbnail'), user) %>
 
         </div>
       </div>
-    </div>
+      </div>
+
       <% end %>
 
       <% else %>
