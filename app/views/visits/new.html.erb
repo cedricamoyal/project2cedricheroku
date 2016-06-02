@@ -1,2 +1,15 @@
-<h1>Visits#new</h1>
-<p>Find me in app/views/visits/new.html.erb</p>
+
+<div class='container'>
+  <div class='row text-center'>
+          <div class='col-md-12'>
+        <h2>Create a new visit:</h2>
+      </div>
+  </div>
+
+  <br>
+
+<% if @current_user %>
+      <%= render :partial => 'form' %>
+<% end %>
+
+</div>

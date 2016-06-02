@@ -1,1 +1,13 @@
-Edit visits
+<div class='container'>
+  <div class='row text-center'>
+          <div class='col-md-12'>
+        <h2>Edit <%= @visit.name %></h2>
+      </div>
+  </div>
+  <br>
+
+<% if @current_user %>
+    <%= render :partial => 'form' %>
+<% end %>
+
+</div>
