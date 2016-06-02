@@ -5,24 +5,28 @@
             </div>
     </div>
 
-  <% @countries.each do |country| %>
-        <div class='col-md-4'>
-            <div class="stepsDetailsShow">
 
-              <h4><%= link_to country.name, "/countries/#{country.id}" %></h4>
 
-              <%= link_to(image_tag( country.flag, :class => 'thumbnail'), country) %>
+  <% @locations.each do |location| %>
+      <% location.countries.each do |country| %>
+            <div class='col-md-4'>
+                <div class="stepsDetailsShow">
 
-              <h5>Location: <span><%= link_to country.location.name, "/locations/#{country.location.id}" %></span></h5>
-              <h5>Capital city: <span><%= country.capitalCity %></span></h5>
-              <h5>Language: <span><%= country.language %></span></h5>
-              <h5>Currency: <span><%= country.currency %></span></h5>
-              <h5>Population: <span><%= country.population %></span></h5>
-              <h5>Area: <span><%= country.area %></span></h5>
-              <h5>Population density: <span><%= country.popDensity %></span></h5>
-            </div>
-    </div>
-  <% end %>
+                  <h4><%= link_to country.name, "/countries/#{country.id}" %></h4>
+
+                  <%= link_to(image_tag( country.flag, :class => 'thumbnail'), country) %>
+
+                  <h5>Location: <span><%= link_to country.location.name, "/locations/#{country.location.id}" %></span></h5>
+                  <h5>Capital city: <span><%= country.capitalCity %></span></h5>
+                  <h5>Language: <span><%= country.language %></span></h5>
+                  <h5>Currency: <span><%= country.currency %></span></h5>
+                  <h5>Population: <span><%= country.population %></span></h5>
+                  <h5>Area: <span><%= country.area %></span></h5>
+                  <h5>Population density: <span><%= country.popDensity %></span></h5>
+                </div>
+        </div>
+      <% end %>
+    <% end %>
 
 </div>
 

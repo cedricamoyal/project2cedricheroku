@@ -3,6 +3,7 @@ class CountriesController < ApplicationController
 
   def index
     @countries = Country.all
+    @locations = Location.all
 
   end
 
