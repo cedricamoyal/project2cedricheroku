@@ -10,8 +10,8 @@
 
 
       <% @users.each do |user| %>
-      <div class='col-md-4 col-md-offset-4'>
-        <div class="stepsDetailsShow specialForm">
+      <div class='col-md-4'>
+        <div class="stepsDetailsShow">
 
             <h5>Username: <%= link_to( user.name, user_path(user) ) %></h5>
             <h5>Email: <%= user.email %></h5>
