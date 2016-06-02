@@ -11,7 +11,7 @@
 
       <% @users.each do |user| %>
       <div class='col-md-4'>
-        <div class="stepsDetailsShow">
+        <div class="stepsDetailsShow specialForm">
 
             <h5>Username: <span><%= link_to( user.name, user_path(user) ) %></span></h5>
             <h5>Email: <span><%= user.email %></span></h5>
