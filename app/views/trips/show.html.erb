@@ -36,13 +36,11 @@
 
       <div class='col-md-3'>
           <div class='details'>
-          <h5>Start date: <span><%= @trip.startDate %></span></h5>
-          <h5>Finish date: <span><%= @trip.startDate + tripTotalDuration %></span></h5>
-          <h5>Duration: <span><%= tripTotalDuration %></span></h5>
+          <h5>Start date: <span><%= @trip.startDate.strftime( "%A, %e %B, %Y") %></span></h5>
+          <h5>Finish date: <span><%= (@trip.startDate + tripTotalDuration).strftime( "%A, %e %B, %Y") %></span></h5>
+          <h5>Duration: <span><%= tripTotalDuration %> days</span></h5>
           <h5>Description: <span><%= @trip.description %></span></h5>
 
-          <h5>Trip ID: <span><%= @trip.id %></span></h5>
-          <h5>trip.user_id: <span><%= @trip.user_id %></span></h5>
       </div>
       </div>
 
@@ -150,7 +148,7 @@
                   <h5>Location: <span><%= link_to step.visit.country.location.name, "/locations/#{step.visit.country.location.id}" %></span></h5>
                   <h5>Country: <span><%= link_to step.visit.country.name, "/countries/#{step.visit.country.id}"  %></span></h5>
 
-                  <h5>Duration: <span><%= step.duration %></span></h5>
+                  <h5>Duration: <span><%= step.duration %> days</span></h5>
                   <h5>From: <span><%= stepStartdate.strftime( "%A, %e %B, %Y") %></span></h5>
                   <h5>To: <span><%= (stepStartdate + step.duration.to_i).strftime( "%A, %e %B, %Y")%> </span></h5>
 
