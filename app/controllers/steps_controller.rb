@@ -40,14 +40,9 @@ class StepsController < ApplicationController
       private
 
       def step_params
+
         params.require(:step).permit(:name, :duration, :position, :trip_id, :visit_id)
       end
 
 
 end
-
-# t.text :name
-# t.integer :trip_id
-# t.integer :visit_id
-# t.text :duration
-# t.text :position

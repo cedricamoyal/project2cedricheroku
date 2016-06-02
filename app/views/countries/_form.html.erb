@@ -1,0 +1,82 @@
+<!--
+t.text    "name"
+t.integer "location_id"
+t.text    "capitalCity"
+t.text    "currency"
+t.text    "population"
+t.text    "area"
+t.text    "popDensity"
+t.text    "flag"
+t.text    "visa"
+t.text    "capitalLatitude"
+t.text    "capitalLongitude"
+t.text    "language" -->
+
+<%= form_for @country do |f| %>
+
+<div class='col-md-6 col-md-offset-3'>
+  <div class="stepsDetailsShow specialForm">
+
+  <p>
+    <%= f.label :name, :class => "labels", :class => "label1" %>
+    <%= f.text_field :name, :required => true, :class => "inputs", :class => "label2" %>
+  </p>
+
+  <p>
+    <%= f.label :location_id, :class => "labels", :class => "label1" %>
+    <%= f.select :location_id, Location.all.map { |a| [ a.name, a.id ]}, :include_blank => true, :class => "inputs", :class => "label2" %>
+  </p>
+
+  <p>
+    <%= f.label :capitalCity, :class => "labels", :class => "label1" %>
+    <%= f.text_field :capitalCity, :required => true, :class => "inputs", :class => "label2" %>
+  </p>
+
+  <p>
+    <%= f.label :currency, :class => "labels", :class => "label1" %>
+    <%= f.text_field :currency, :required => true, :class => "inputs", :class => "label2" %>
+  </p>
+
+  <p>
+    <%= f.label :population, :class => "labels", :class => "label1" %>
+    <%= f.text_field :population, :required => true, :class => "inputs", :class => "label2" %>
+  </p>
+
+  <p>
+    <%= f.label :area, :class => "labels", :class => "label1" %>
+    <%= f.text_field :area, :required => true, :class => "inputs", :class => "label2" %>
+  </p>
+
+  <p>
+    <%= f.label :popDensity, :class => "labels", :class => "label1" %>
+    <%= f.text_field :popDensity, :required => true, :class => "inputs", :class => "label2" %>
+  </p>
+
+  <p>
+    <%= f.label :flag, :class => "labels", :class => "label1" %>
+    <%= f.url_field :flag, :required => true, :class => "inputs", :class => "label2" %>
+  </p>
+
+  <p>
+    <%= f.label :capitalLatitude, :class => "labels", :class => "label1" %>
+    <%= f.text_field :capitalLatitude, :required => true, :class => "inputs", :class => "label2" %>
+  </p>
+
+  <p>
+    <%= f.label :capitalLongitude, :class => "labels", :class => "label1" %>
+    <%= f.text_field :capitalLongitude, :required => true, :class => "inputs", :class => "label2" %>
+  </p>
+
+  <p>
+    <%= f.label :language, :class => "labels", :class => "label1" %>
+    <%= f.text_field :language, :required => true, :class => "inputs", :class => "label2" %>
+  </p>
+
+<br>
+
+  <%= f.submit %>
+
+</div>
+</div>
+
+<% end %>
