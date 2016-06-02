@@ -7,25 +7,27 @@
           </div>
   </div>
 
+<% @locations.each do |location| %>
+        <% location.countries.each do |country| %>
+              <% country.visits.each do |visit| %>
+                    <div class='col-md-4'>
+                      <div class="stepsDetailsShow">
 
-  <% @visits.each do |visit| %>
-        <div class='col-md-4'>
-          <div class="stepsDetailsShow">
+                          <h4><%= link_to visit.name, "/visits/#{visit.id}" %></h4>
 
-              <h4><%= link_to visit.name, "/visits/#{visit.id}" %></h4>
+                          <%= link_to(image_tag( visit.image, :class => 'thumbnail'), visit) %>
 
-              <%= link_to(image_tag( visit.image, :class => 'thumbnail'), visit) %>
+                          <% if visit.country %>
+                            <h5>Location: <span><%= link_to visit.country.location.name, "/locations/#{visit.country.location.id}" %></span></h5>
+                            <h5>Country: <span><%= link_to visit.country.name, "/countries/#{visit.country.id}" %></span></h5>
+                          <% end %>
 
-              <% if visit.country %>
-                <h5>Location: <span><%= link_to visit.country.location.name, "/locations/#{visit.country.location.id}" %></span></h5>
-                <h5>Country: <span><%= link_to visit.country.name, "/countries/#{visit.country.id}" %></span></h5>
-              <% end %>
-
-              <h5>Description: <span><%= truncate( visit.description, :length => 300)%></span></h5>
-              <h5>Visit_id: <%= visit.id %></h5>
-            </div>
-    </div>
-
+                          <h5>Description: <span><%= truncate( visit.description, :length => 300)%></span></h5>
+                          <h5>Visit_id: <%= visit.id %></h5>
+                        </div>
+                </div>
+          <% end %>
+      <% end %>
   <% end %>
 
 </div>

@@ -2,6 +2,8 @@ class VisitsController < ApplicationController
 
     def index
       @visits = Visit.all
+      @countries = Country.all
+      @locations = Location.all
 
     end
 
