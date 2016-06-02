@@ -3,12 +3,11 @@ Location.destroy_all
 Country.destroy_all
 Visit.destroy_all
 Theme.destroy_all
-Trip.destroy_all
-Step.destroy_all
+
 
 User.create!([
   {name: "Sam", email: "sam@ga.co", password_digest: "$2a$10$aQSYAkgbV8jYg6wQxfD7heV8QXKAyDYWATEVAl2i6TDGKycVo1Fiq", admin: false, image: "http://3d.trsty.com/wp-content/uploads/2015/04/jippi-cool-kid-characters-by2.jpg"},
-  {name: "Christelle", email: "christelle@ga.co", password_digest: "$2a$10$twlZ.KoWKmx10Xug7kqVhep7fP88mHOJWMFf5liJ5.GDQhR92jTMa", admin: false, image: "https://image-gr.s3.envato.com/files/25039836/Pretty-girl-sits-on-a-suitcase_590.jpg"},
+  {name: "Christelle", email: "christelle@ga.co", password_digest: "$2a$10$twlZ.KoWKmx10Xug7kqVhep7fP88mHOJWMFf5liJ5.GDQhR92jTMa", admin: true, image: "https://image-gr.s3.envato.com/files/25039836/Pretty-girl-sits-on-a-suitcase_590.jpg"},
   {name: "Cedric", email: "cedric@ga.co", password_digest: "$2a$10$UYpkC0nm/4MJjMRcaIHsbeLJkzi8QVebsLQyK/sRclHCuzh7C6s32", admin: true, image: "http://i.istockimg.com/file_thumbview_approve/4338531/2/stock-illustration-4338531-tennis-boy-cartoon-character-no-background.jpg"}
 ])
 
@@ -55,12 +54,7 @@ Country.create!([
   {name: "Brazil", location_id: Location.find_by(:name => 'South America').id, capitalCity: "Brasilia", currency: "Brazilian real", population: "186,404,900", area: "8,514,877", popDensity: "22", flag: "https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1280px-Flag_of_Brazil.svg.png", visa: nil, capitalLatitude: "-15.793889", capitalLongitude: "-47.882778", language: "Portuguese"}
 ])
 
-Trip.create!([
-  {name: "Sam's first WT", description: "Youhouuuu", startDate: "2017-06-01", user_id: User.find_by(:name => 'Sam').id, image: "https://ga-core.s3.amazonaws.com/cms/files/files/000/000/702/original/Global-Tour-Sweeps-Web.jpg"},
-  {name: "Christelle & Cedric", description: "Honeymoonmoon", startDate: "2016-10-23", user_id: User.find_by(:name => 'Cedric').id, image: "https://www.colourbox.com/preview/2360918-illustration-of-world-tour-with-aero-plane-and-globe-on-white-background.jpg"},
-  {name: "Sam's second trip", description: "A cool trip", startDate: "2016-07-02", user_id: User.find_by(:name => 'Sam').id, image: "https://pbs.twimg.com/profile_images/804900078/LOGO_OFICIAL2.png"},
-  {name: "Sam's 3rd trip", description: "A very nice trip", startDate: "2017-09-23", user_id: User.find_by(:name => 'Sam').id, image: "http://www.funpaperairplanes.com/img/fpa-logo.png"}
-])
+
 
 Theme.create!([
   {name: "Relax/Farniente", description: nil},
@@ -165,23 +159,4 @@ Visit.create!([
   {name: "Calchaquí Valleys", country_id: Country.all[32].id, theme_id: Theme.find_by(:name => "Adventurous/Off the beaten tracks").id, description: "The Calchaquí Valley (Spanish: Valles Calchaquíes) is an area in the northwestern region of Argentina which crosses the provinces of Catamarca, Tucumán, Jujuy and Salta. It is best known for its contrast of colours and its unique geography that ranges from the mountain desert to the subtropical forest.", image: "https://a.travel-assets.com/mediavault.le/media/957b04bcc531b10f8d0b85f393e631d6798f113a.jpeg", visitLatitude: "-26.94", visitLongitude: "-65.34"},
   {name: "Buenos Aires", country_id: Country.all[32].id, theme_id: Theme.find_by(:name => "Immersion in native population").id, description: "Buenos Aires defines itself as a multicultural city, being home to multiple ethnic and religious groups. Also, several languages are spoken in the city in addition to Spanish, contributing to its culture and the dialect spoken in the city and in some other parts of the country.", image: "https://johnbarwoodphotography.files.wordpress.com/2012/04/buenos-aires-4.jpg", visitLatitude: "-34.603333", visitLongitude: "-58.381667"},
   {name: "Punta Tombo", country_id: Country.all[32].id, theme_id: Theme.find_by(:name => "Adventurous/Off the beaten tracks").id, description: "Punta Tombo is a peninsula into the Atlantic Ocean 110 km (68 mi) south of Trelew in Chubut Province, Argentina, where there is a large colony of Magellanic penguins - the largest such colony in South America.", image: "http://a7004596b03128c36bd2-313eee040a6739ed30827c353f729c6b.r55.cf1.rackcdn.com/98/1/large.jpg", visitLatitude: "-44.04", visitLongitude: "-65.2"}
-])
-
-Step.create!([
-  {name: "Yeah", trip_id: Trip.all[3].id, visit_id: Visit.all[0].id, duration: "3", position: "3"},
-  {name: "My first step", trip_id: Trip.all[3].id, visit_id: Visit.all[2].id, duration: "4", position: "2"},
-  {name: "The second big step", trip_id: Trip.all[3].id, visit_id: Visit.all[5].id, duration: "6", position: "4"},
-  {name: "G1", trip_id: Trip.all[3].id, visit_id: Visit.all[44].id, duration: "2", position: "5"},
-  {name: "g2", trip_id: Trip.all[3].id, visit_id: Visit.all[43].id, duration: "3", position: "6"},
-  {name: "yeahhh", trip_id: Trip.all[3].id, visit_id: Visit.all[6].id, duration: "2", position: "1"},
-  # {name: "Lalala", trip_id: Trip.all[7].id, visit_id: Visit.all[54].id, duration: "4", position: "1"},
-  # {name: "Lalala", trip_id: Trip.all[7].id, visit_id: Visit.all[55].id, duration: "2", position: "2"},
-  # {name: "Lalala", trip_id: Trip.all[7].id, visit_id: Visit.all[66].id, duration: "3", position: "6"},
-  # {name: "Lalala", trip_id: Trip.all[7].id, visit_id: Visit.all[67].id, duration: "3", position: "7"},
-  # {name: "Lalala", trip_id: Trip.all[7].id, visit_id: Visit.all[59].id, duration: "3", position: "8"},
-  # {name: "Lalala", trip_id: Trip.all[7].id, visit_id: Visit.all[65].id, duration: "3", position: "5"},
-  # {name: "Lalala", trip_id: Trip.all[7].id, visit_id: Visit.all[52].id, duration: "3", position: "4"},
-  # {name: "Lalala", trip_id: Trip.all[7].id, visit_id: Visit.all[50].id, duration: "3", position: "3"},
-  # {name: nil, trip_id: Trip.all[8].id, visit_id: Visit.all[3].id, duration: "3", position: "1"},
-  # {name: nil, trip_id: Trip.all[9].id, visit_id: Visit.all[74].id, duration: "3", position: "1"}
 ])
