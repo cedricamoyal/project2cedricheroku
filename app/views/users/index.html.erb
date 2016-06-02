@@ -7,10 +7,9 @@
                 <h2>All the users:</h2>
               </div>
           </div>
-</div>
+
 
       <% @users.each do |user| %>
-  <div class='container'>
       <div class='col-md-4'>
         <div class="stepsDetailsShow">
 
@@ -20,17 +19,18 @@
 
         </div>
       </div>
-      </div>
+
 
       <% end %>
 
       <% else %>
-      <div class='container'>
+
         <div class='row text-center'>
                 <div class='col-md-12'>
             <h3>Hello, how are you today?</h3>
             <h4>Select the links above to login or to create an account.</h4>
           </div>
         </div>
+
       </div>
 <% end %>
