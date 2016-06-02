@@ -1,12 +1,26 @@
 
 <% if @current_user && @current_user.admin %>
-      <% @users.each do |u| %>
-        <ul>
-            <li>Username: <%= link_to( u.name, user_path(u) ) %></li>
-            <li>Email: <%= u.email %></li>
-            <li>Password digest: <%= u.password_digest %></li>
-        </ul>
+
+<div class='container'>
+  <div class='row text-center'>
+          <div class='col-md-12'>
+                <h2>All the users:</h2>
+              </div>
+          </div>
+
+
+      <% @users.each do |user| %>
+      <div class='col-md-4 col-md-offset-4'>
+        <div class="stepsDetailsShow specialForm">
+
+            <h5>Username: <%= link_to( user.name, user_path(u) ) %></h5>
+            <h5>Email: <%= user.email %></h5>
+            <%= link_to(image_tag( user.image, :class => 'thumbnail'), user) %>
+
+        </div>
+      </div>
       <% end %>
+
       <% else %>
             <h3>Hello, how are you today?</h3>
             <h4>Select the links above to login or to create an account.</h4>
