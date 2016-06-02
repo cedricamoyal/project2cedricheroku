@@ -1,0 +1,46 @@
+
+<div class='container'>
+
+    <div class='row text-center'>
+            <div class='col-md-12'>
+                <h2><%= @step.trip.name %>, <%= @step.visit.name %>:</h2>
+              </div>
+      </div>
+
+
+<div class='row'>
+
+    <div class='col-md-8'>
+            <div class="stepsDetailsShow">
+                <%= link_to(image_tag( @step.visit.image, :class => 'featured'), @step) %>
+              </div>
+      </div>
+
+    <div class='col-md-4'>
+      <div class="stepsDetailsShow">
+
+      <h5>Visit name: <span><%= link_to @step.visit.name, "/visits/#{@step.visit.id}" %></span></h5>
+
+      <h5>Location: <span><%= link_to @step.visit.country.location.name, "/locations/#{@step.visit.country.location.id}" %></span></h5>
+      <h5>Country: <span><%= link_to @step.visit.country.name, "/countries/#{@step.visit.country.id}"  %></span></h5>
+
+      <h5>Duration: <span><%= @step.duration %></span></h5>
+      <h5>Position: <span><%= @step.position %></span></h5>
+      <h5>Description: <span><%= @step.visit.description %></span></h5>
+
+      <br>
+      <%= link_to "Link to: #{@step.trip.name}", "/trips/#{@step.trip.id}", :class => "links" %>
+      <br>
+      <%= link_to "Link to: All my trips", "/trips", :class => "links" %>
+      <br>
+      <br>
+      <div class='row text-center'>
+      <button type='button' class='btn btn btn-default'><%= link_to "Edit Step", edit_step_path( @step ), :class => "links" %></button>
+
+      <button type='button' class='btn btn btn-default'><%= link_to "Delete Step", @step, :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => "links" %></button>
+      </div>
+      </div>
+    </div>
+</div>
+
+</div>

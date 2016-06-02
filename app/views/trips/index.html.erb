@@ -1,0 +1,70 @@
+
+<div class='container'>
+  <div class='row text-center'>
+          <div class='col-md-12'>
+          <h2>This should show all your trips:</h2>
+      </div>
+  </div>
+
+
+  <br>
+  <div class='container'>
+    <div class='row text-center'>
+            <div class='col-md-12'>
+                  <button type='button' class='btn btn-lg btn-default'><%= link_to "Create a new trip", new_trip_path(@current_user) %></button>
+            </div>
+    </div>
+  </div>
+
+<br>
+<div class='container'>
+  <% @current_user.trips.each do |trip| %>
+      <div class='col-md-4'>
+        <div class="stepsDetailsShow">
+
+              <h4><%= link_to trip.name, "/trips/#{trip.id}" %></h4>
+              <%= link_to(image_tag( trip.image, :class => 'thumbnail'), trip) %>
+              <h5>Current user name: <span><%= @current_user.name %></span></h5>
+              <h5>Start date: <span><%= trip.startDate.strftime( "%A, %e %B, %Y") %></span></h5>
+              <h5>Description: <span><%= trip.description %></span></h5>
+
+              <h5>The different visits:</h5>
+              <% trip.steps.each do |step| %>
+                <span>| <%= link_to step.visit.name, "/visits/#{step.visit.id}" %><span>
+              <% end %>
+
+            </div>
+          </div>
+
+  <% end %>
+</div>
+
+
+<div class='container'>
+  <% if @current_user && @current_user.admin %>
+<hr>
+<hr>
+
+    <% @users.each do |user| %>
+
+              <% user.trips.each do |trip| %>
+              <div class='col-md-4'>
+                <div class="stepsDetailsShow">
+                      <h4><%= link_to trip.name, "/trips/#{trip.id}" %></h4>
+                      <%= link_to(image_tag( trip.image, :class => 'thumbnail'), trip) %>
+                      <h5>User name: <span><%= user.name %></span></h5>
+                      <h5>Start date: <span><%= trip.startDate.strftime( "%A, %e %B, %Y") %></span></h5>
+                      <h5>Description: <span><%= trip.description %></span></h5>
+
+                      <h5>The different visits:</h5>
+                      <% trip.steps.each do |step| %>
+                        <span>| <%= link_to step.visit.name, "/visits/#{step.visit.id}" %><span>
+                      <% end %>
+                    </div>
+                  </div>
+              <% end %>
+
+    <% end %>
+
+  <% end %>
+</div>

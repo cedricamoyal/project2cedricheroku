@@ -1,0 +1,40 @@
+<div class='container'>
+  <div class='row text-center'>
+          <div class='col-md-12'>
+              <h2>This should show all the countries:</h2>
+            </div>
+    </div>
+
+  <% @countries.each do |country| %>
+        <div class='col-md-4'>
+            <div class="stepsDetailsShow">
+
+              <h4><%= link_to country.name, "/countries/#{country.id}" %></h4>
+
+              <%= link_to(image_tag( country.flag, :class => 'thumbnail'), country) %>
+
+              <h5>Location: <span><%= link_to country.location.name, "/locations/#{country.location.id}" %></span></h5>
+              <h5>Capital city: <span><%= country.capitalCity %></span></h5>
+              <h5>Language: <span><%= country.language %></span></h5>
+              <h5>Currency: <span><%= country.currency %></span></h5>
+              <h5>Population: <span><%= country.population %></span></h5>
+              <h5>Area: <span><%= country.area %></span></h5>
+              <h5>Population density: <span><%= country.popDensity %></span></h5>
+            </div>
+    </div>
+  <% end %>
+
+</div>
+
+<!--
+t.text :name
+t.integer :location_id
+t.text :capitalCity
+t.text :currency
+t.text :population
+t.text :area
+t.text :popDensity
+t.text :flag
+t.text :visa
+t.text :capitalLatitude
+t.text :capitalLongitude -->

@@ -1,0 +1,28 @@
+
+<div class='container'>
+  <div class='row text-center'>
+          <div class='col-md-12'>
+      <h2>This should show all the locations/continents:</h2>
+    </div>
+</div>
+
+
+  <% @locations.each do |location| %>
+
+  <div class='col-md-4'>
+    <div class="stepsDetailsShow">
+              <h4>Location name: <%= link_to location.name, "/locations/#{location.id}" %></h4>
+              <%= link_to(image_tag( location.image, :class => 'thumbnail'), location) %>
+              <h5>Population: <span><%= location.population %></span></h5>
+              <h5>Area: <span><%= location.area %></span></h5>
+
+              <h5>The different countries:</h5>
+              <% location.countries.each do |country| %>
+                <span>| <%= link_to country.name, "/countries/#{country.id}" %><span>
+              <% end %>
+    </div>
+  </div>
+
+  <% end %>
+
+  </div>

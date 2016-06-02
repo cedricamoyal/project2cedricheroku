@@ -1,0 +1,16 @@
+<h2>This should show all the different step of your trip:</h2>
+
+<ul>
+  <% @current_user.steps.each do |step| %>
+    <li>
+              <%= link_to(image_tag( step.visit.image, :class => 'thumbnail'), step) %>
+              <h4>Visit name: <%= link_to step.visit.name, "/visits/#{step.visit.id}" %></h4>
+              <h4>Trip name: <%= step.trip.name %></h4>
+              <h4>Description: <%= step.visit.description %></h4>
+              <h4>Duration: <%= step.duration %></h4>
+              <h4>Position: <%= step.position %></h4>
+              <hr>
+              <hr>
+    </li>
+  <% end %>
+</ul>

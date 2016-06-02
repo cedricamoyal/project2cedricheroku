@@ -1,0 +1,102 @@
+
+<br>
+<div class='container'>
+  <div class='row text-center'>
+          <div class='col-md-12'>
+            <h2><%= @country.name %></h2>
+          </div>
+  </div>
+
+  <br>
+
+<div class='row'>
+        <div class='col-md-12'>
+              <div id="map"></div>
+        </div>
+</div>
+
+<br>
+<div class='row'>
+    <div class='col-md-8'>
+            <div class="stepsDetailsShow">
+                  <%= link_to(image_tag( @country.flag, :class => 'featured'), @country) %>
+            </div>
+    </div>
+
+    <div class='col-md-4'>
+      <div class="stepsDetailsShow">
+              <h5>Location: <span><%= link_to @country.location.name, "/locations/#{@country.location.id}" %></span></h5>
+              <h5>Capital city: <span><%= @country.capitalCity %></span></h5>
+              <h5>Language: <span><%= @country.language %></span></h5>
+              <h5>Currency: <span><%= @country.currency %></span></h5>
+              <h5>Population: <span><%= @country.population %></span></h5>
+              <h5>Area: <span><%= @country.area %></span></h5>
+              <h5>Population density: <span><%= @country.popDensity %></span></h5>
+
+        </div>
+      </div>
+    </div>
+
+      <div class='row text-center'>
+              <div class='col-md-12'>
+                      <h3>Visits:</h3>
+              </div>
+      </div>
+
+      <br>
+
+<% @country.visits.each do |visit| %>
+    <div class='col-md-4'>
+      <div class="stepsDetails">
+              <!-- <h4><%= visit.name %>:</h4>
+              <%= link_to( image_tag(visit.image, :class => 'thumbnail'), visit ) %> -->
+
+              <h4><%= link_to visit.name, "/visits/#{visit.id}" %></h4>
+
+              <%= link_to(image_tag( visit.image, :class => 'thumbnail'), visit) %>
+              <h5>Location: <span><%= link_to visit.country.location.name, "/locations/#{visit.country.location.id}" %></span></h5>
+              <h5>Country: <span><%= link_to visit.country.name, "/countries/#{visit.country.id}" %></span></h5>
+              <h5>Description: <span><%= truncate( visit.description, :length => 300)%></span></h5>
+
+      </div>
+    </div>
+
+          <% end %>
+
+</div>
+
+
+
+<script>
+    function initMap() {
+
+      var mapDiv = document.getElementById('map');
+      var map = new google.maps.Map(mapDiv, {
+        center: {lat: <%= @country.capitalLatitude %>, lng: <%= @country.capitalLongitude %>},
+        zoom: 4
+      });
+
+      var iconBase = 'http://maps.google.com/mapfiles/kml/paddle/A.png';
+
+      var marker = new google.maps.Marker({
+        position: {lat: <%= @country.capitalLatitude %>, lng: <%= @country.capitalLongitude %>},
+        map: map,
+        icon: iconBase
+      });
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+      async defer></script>
+
+
+      <!-- t.text :name
+      t.integer :location_id
+      t.text :capitalCity
+      t.text :currency
+      t.text :population
+      t.text :area
+      t.text :popDensity
+      t.text :flag
+      t.text :visa
+      t.text :capitalLatitude
+      t.text :capitalLongitude -->

@@ -1,0 +1,263 @@
+
+
+<br>
+<div class='container'>
+  <div class='row text-center'>
+          <div class='col-md-12'>
+                <button type='button' class='btn btn-lg btn-default'><%= link_to "Create a new step", new_step_path(@current_user) %></button>
+                <button type='button' class='btn btn-lg btn-default'><%= link_to "Edit Trip", edit_trip_path( @trip ), :class => "links" %></button>
+                <button type='button' class='btn btn-lg btn-default'><%= link_to "Delete Trip", @trip, :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => "links" %></button>
+          </div>
+  </div>
+</div>
+
+
+<div class='container'>
+
+<div class='row text-center'>
+        <div class='col-md-12'>
+            <h2><%= @trip.name %></h2>
+        </div>
+</div>
+
+
+
+<% stepsPosition = @trip.steps.sort do |s1, s2| %>
+  <% s1.position <=> s2.position %>
+<%end%>
+
+
+<div class='row'>
+
+      <div class='col-md-3'>
+          <div class='details'>
+          <h5>Start date: <span><%= @trip.startDate %></span></h5>
+          <h5>Description: <span><%= @trip.description %></span></h5>
+
+          <h5>Trip ID: <span><%= @trip.id %></span></h5>
+          <h5>trip.user_id: <span><%= @trip.user_id %></span></h5>
+      </div>
+      </div>
+
+
+
+
+      <div class='col-md-6'>
+        <div id="map"></div>
+      </div>
+
+
+          <div class='col-md-3'>
+                <div id="right-panel">
+              <b>Start:</b>
+                    <select id="start">
+
+                        <% stepsPosition.each do |step| %>
+
+                        <option value="<%= step.visit.visitLatitude %>, <%= step.visit.visitLongitude %>"><%= step.visit.name %></option>
+
+                        <% end %>
+                    </select>
+              <br>
+              <br>
+              <b>Waypoints:</b> <br>
+              <i>(Ctrl-Click for multiple selection)</i> <br>
+              <select multiple id="waypoints">
+
+                <% stepsPosition.each do |step| %>
+
+                <option value="<%= step.visit.visitLatitude %>, <%= step.visit.visitLongitude %>"><%= step.visit.name %></option>
+
+                <% end %>
+
+              </select>
+              <br>
+              <br>
+              <b>End:</b>
+              <select id="end">
+
+                <% stepsPosition.each do |step| %>
+
+                <option value="<%= step.visit.visitLatitude %>, <%= step.visit.visitLongitude %>"><%= step.visit.name %></option>
+
+                <% end %>
+
+
+              </select>
+              <br>
+              <br>
+
+                  <div class="submitCenter1"><div class="submitCenter2">
+                    <input type="submit" id="submit">
+                  </div></div>
+
+
+              </div>
+              </div>
+
+</div>
+
+<div class='row'>
+        <div class='col-md-12'>
+      <div id="directions-panel"></div>
+    </div>
+</div>
+
+
+</div>
+
+<br>
+<div class='container'>
+  <div class='row text-center'>
+          <div class='col-md-12'>
+                <button type='button' class='btn btn-lg btn-default'><%= link_to "Create a new step", new_step_path(@current_user) %></button>
+                <button type='button' class='btn btn-lg btn-default'><%= link_to "Edit Trip", edit_trip_path( @trip ), :class => "links" %></button>
+                <button type='button' class='btn btn-lg btn-default'><%= link_to "Delete Trip", @trip, :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => "links" %></button>
+          </div>
+  </div>
+</div>
+<br>
+
+
+<div class='container'>
+
+  <div class='row text-center'>
+          <div class='col-md-12'>
+             <h3>The different steps of the trip:</h3>
+             <br>
+          </div>
+  </div>
+
+          <% stepStartdate = @trip.startDate %>
+
+          <% stepsPosition.each do |step| %>
+
+              <div class='col-md-4'>
+                <div class="stepsDetails">
+                  <h4><%= step.visit.name %></h4>
+
+                  <h4>Position: <%= step.position %></h4>
+
+                  <%= link_to( image_tag(step.visit.image, :class => 'thumbnail'), step ) %>
+
+                  <h5>Location: <span><%= link_to step.visit.country.location.name, "/locations/#{step.visit.country.location.id}" %></span></h5>
+                  <h5>Country: <span><%= link_to step.visit.country.name, "/countries/#{step.visit.country.id}"  %></span></h5>
+
+                  <h5>Duration: <span><%= step.duration %></span></h5>
+                  <h5>From: <span><%= stepStartdate.strftime( "%A, %e %B, %Y") %></span></h5>
+                  <h5>To: <span><%= (stepStartdate + step.duration.to_i).strftime( "%A, %e %B, %Y")%> </span></h5>
+
+
+                  <h5>Description: <span><%= truncate( step.visit.description, :length => 100)%></span></h5>
+
+                  <% stepStartdate += step.duration.to_i %>
+               </div>
+             </div>
+
+          <% end %>
+
+</div>
+
+<br>
+<div class='container'>
+  <div class='row text-center'>
+          <div class='col-md-12'>
+                <button type='button' class='btn btn-lg btn-default'><%= link_to "Create a new step", new_step_path(@current_user) %></button>
+                <button type='button' class='btn btn-lg btn-default'><%= link_to "Edit Trip", edit_trip_path( @trip ), :class => "links" %></button>
+                <button type='button' class='btn btn-lg btn-default'><%= link_to "Delete Trip", @trip, :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => "links" %></button>
+          </div>
+  </div>
+</div>
+
+<script>
+
+var stepsMarkerLatitude = [];
+var stepsMarkerLongitude = [];
+
+
+
+function initMap() {
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: {lat: <%= stepsPosition.first.visit.visitLatitude %>, lng: <%= stepsPosition.first.visit.visitLongitude%>}
+        });
+
+        <% stepsPosition.each do |step| %>
+
+              var iconBase = 'http://maps.google.com/mapfiles/kml/paddle/<%= step.position %>.png';
+              var marker = new google.maps.Marker({
+                position: {lat: <%= step.visit.visitLatitude %>, lng: <%= step.visit.visitLongitude %>},
+                map: map,
+                icon: iconBase
+              });
+              stepsMarkerLatitude.push(<%= step.visit.visitLatitude %>);
+              stepsMarkerLongitude.push(<%= step.visit.visitLongitude %>);
+
+              <% end %>
+
+        directionsDisplay.setMap(map);
+
+        document.getElementById('submit').addEventListener('click', function() {
+          calculateAndDisplayRoute(directionsService, directionsDisplay);
+        });
+      }
+
+function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+  var waypts = [];
+  var checkboxArray = document.getElementById('waypoints');
+  for (var i = 0; i < checkboxArray.length; i++) {
+    if (checkboxArray.options[i].selected) {
+      waypts.push({
+        location: checkboxArray[i].value,
+        stopover: true
+      });
+    }
+  }
+
+  directionsService.route({
+  origin: document.getElementById('start').value,
+  destination: document.getElementById('end').value,
+  waypoints: waypts,
+  optimizeWaypoints: true,
+  travelMode: google.maps.TravelMode.DRIVING
+}, function(response, status) {
+  if (status === google.maps.DirectionsStatus.OK) {
+    directionsDisplay.setDirections(response);
+    var route = response.routes[0];
+    var summaryPanel = document.getElementById('directions-panel');
+    summaryPanel.innerHTML = '';
+    // For each route, display summary information.
+    for (var i = 0; i < route.legs.length; i++) {
+      var routeSegment = i + 1;
+      summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+          '</b><br>';
+      summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+      summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+      summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+    }
+  } else {
+    window.alert('Directions request failed due to ' + status);
+  }
+});
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+      async defer></script>
