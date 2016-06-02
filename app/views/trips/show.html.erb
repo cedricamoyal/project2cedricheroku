@@ -26,12 +26,19 @@
   <% s1.position <=> s2.position %>
 <%end%>
 
+<% tripTotalDuration = 0 %>
+  <% stepsPosition.each do |step| %>
+      <% tripTotalDuration += step.duration.to_i %>
+  <% end %>
+
 
 <div class='row'>
 
       <div class='col-md-3'>
           <div class='details'>
           <h5>Start date: <span><%= @trip.startDate %></span></h5>
+          <h5>Finish date: <span><%= @trip.startDate + tripTotalDuration %></span></h5>
+          <h5>Duration: <span><%= tripTotalDuration %></span></h5>
           <h5>Description: <span><%= @trip.description %></span></h5>
 
           <h5>Trip ID: <span><%= @trip.id %></span></h5>
