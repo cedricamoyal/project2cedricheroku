@@ -8,7 +8,8 @@
 
 
   <% @locations.each do |location| %>
-      <% location.countries.each do |country| %>
+      <% sorted_countries = location.countries.sort {|c1, c2| c1.name <=> c2.name } %>
+      <% sorted_countries.each do |country| %>
             <div class='col-md-4'>
                 <div class="stepsDetailsShow">
 
