@@ -33,6 +33,12 @@
               <h5>Area: <span><%= @country.area %></span></h5>
               <h5>Population density: <span><%= @country.popDensity %></span></h5>
 
+              <div class='row text-center'>
+              <button type='button' class='btn btn btn-default'><%= link_to "Edit Country", edit_country_path( @country ), :class => "links" %></button>
+
+              <button type='button' class='btn btn btn-default'><%= link_to "Delete Country", @country, :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => "links" %></button>
+              </div>
+
         </div>
       </div>
     </div>
@@ -57,14 +63,6 @@
               <h5>Location: <span><%= link_to visit.country.location.name, "/locations/#{visit.country.location.id}" %></span></h5>
               <h5>Country: <span><%= link_to visit.country.name, "/countries/#{visit.country.id}" %></span></h5>
               <h5>Description: <span><%= truncate( visit.description, :length => 300)%></span></h5>
-
-                <br>
-
-              <div class='row text-center'>
-              <button type='button' class='btn btn btn-default'><%= link_to "Edit Country", edit_country_path( @country ), :class => "links" %></button>
-
-              <button type='button' class='btn btn btn-default'><%= link_to "Delete Country", @country, :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => "links" %></button>
-              </div>
 
       </div>
     </div>
