@@ -5,6 +5,19 @@
             </div>
     </div>
 
+    <% if @current_user && @current_user.admin %>
+
+        <br>
+
+          <div class='row text-center'>
+                  <div class='col-md-12'>
+                        <button type='button' class='btn btn-lg btn-default'><%= link_to "Create a new country", new_country_path %></button>
+                  </div>
+          </div>
+
+      <br>
+    <% end %>
+
 
 
   <% sorted_locations = @locations.sort {|l1, l2| l1.name <=> l2.name } %>
