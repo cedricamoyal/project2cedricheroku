@@ -19,27 +19,35 @@ class CountriesController < ApplicationController
   end
 
   def create
+      if @current_user && @current_user.admin
     country = Country.create country_params
 
     redirect_to country
+     end
   end
 
   def edit
+    if @current_user && @current_user.admin
     @country = Country.find params[:id]
+    end
   end
 
   def update
+    if @current_user && @current_user.admin
     country = Country.find params[:id]
     country.update country_params
 
     redirect_to country
+    end
   end
 
   def destroy
+    if @current_user && @current_user.admin
     country = Country.find params[:id]
     country.destroy
 
     redirect_to countries_path
+    end
   end
 
   private
