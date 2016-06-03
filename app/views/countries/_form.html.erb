@@ -25,7 +25,7 @@ t.text    "language" -->
   <p>
     <%= f.label :location_id, :class => "labels", :class => "label1" %>
       <% sorted_locations = Location.all.sort_by { |l| l.name } %>
-    <%= f.select :location_id, sorted_locations.all.map { |a| [ a.name, a.id ]}, :include_blank => true, :class => "inputs", :class => "label2" %>
+    <%= f.select :location_id, sorted_locations.map { |a| [ a.name, a.id ]}, :include_blank => true, :class => "inputs", :class => "label2" %>
   </p>
 
   <p>

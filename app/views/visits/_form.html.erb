@@ -20,7 +20,7 @@ t.text    "visitLongitude" -->
   <p>
     <%= f.label :country_id, :class => "labels", :class => "label1" %>
       <% sorted_countries = Country.all.sort_by { |c| c.name } %>
-    <%= f.select :country_id, sorted_countries.all.map { |a| [ a.name, a.id ]}, :include_blank => true, :class => "inputs", :class => "label2" %>
+    <%= f.select :country_id, sorted_countries.map { |a| [ a.name, a.id ]}, :include_blank => true, :class => "inputs", :class => "label2" %>
   </p>
 
   <p>
