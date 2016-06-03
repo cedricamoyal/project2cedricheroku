@@ -16,10 +16,21 @@ t.text :position -->
     <%= f.select :trip_id, @current_user.trips.map { |a| [ a.name, a.id ]}, :include_blank => true, :class => "inputs", :class => "label2" %>
   </p>
 
+<!-- <% grouped_options = Visit.all.group_by { |v| v.country.name } %>
+<% grouped_options = grouped_options.sort_by { |k, v| k } %> -->
 
+<!-- grouped_options = { "Australia" => [Visit.first, Visit.second] } -->
+<!-- grouped_options = { "Australia" => [[Visit.first.name, Visit.first.id], [Visit.second.name, Visit.second.id]] } -->
+
+
+<!--
+<%= f.select :visit_id, grouped_options_for_select( grouped_options ) %> -->
   <p>
     <%= f.label :visit_id, :class => "labels", :class => "label1" %>
-    <%= f.select :visit_id, Visit.all.map { |a| [ a.name, a.id ]}, :include_blank => true, :class => "inputs", :class => "label2" %>
+
+    <% sorted_visits = Visit.all.sort_by { |v| v.name } %>
+    <%= f.select :visit_id, sorted_visits.map { |a| [ a.name, a.id ]}, :include_blank => true, :class => "inputs", :class => "label2" %>
+
   </p>
 
   <p>

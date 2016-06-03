@@ -11,6 +11,7 @@ class StepsController < ApplicationController
 
       def new
         @step = Step.new
+        @locations = Location.all
       end
 
       def create
@@ -21,6 +22,7 @@ class StepsController < ApplicationController
 
       def edit
         @step = Step.find params[:id]
+        @locations = Location.all
       end
 
       def update
