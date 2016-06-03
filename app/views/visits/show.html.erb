@@ -26,6 +26,17 @@
           <h5>Location: <span><%= link_to @visit.country.location.name, "/locations/#{@visit.country.location.id}" %></span></h5>
           <h5>Country: <span><%= link_to @visit.country.name, "/countries/#{@visit.country.id}" %></span></h5>
           <h5>Description: <span><%= @visit.description %></span></h5>
+
+          <br>
+
+<% if @current_user && @current_user.admin %>
+        <div class='row text-center'>
+        <button type='button' class='btn btn btn-default'><%= link_to "Edit Visit", edit_visit_path( @visit ), :class => "links" %></button>
+
+        <button type='button' class='btn btn btn-default'><%= link_to "Delete Visit", @visit, :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => "links" %></button>
+        </div>
+<% end %>
+
       </div>
     </div>
   </div>
