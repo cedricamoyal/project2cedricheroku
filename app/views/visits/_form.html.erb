@@ -26,7 +26,7 @@ t.text    "visitLongitude" -->
   <p>
     <%= f.label :theme_id, :class => "labels", :class => "label1" %>
         <% sorted_themes = Theme.all.sort_by { |t| t.name } %>
-    <%= f.select :theme_id, sorted_themes.all.map { |a| [ a.name, a.id ]}, :include_blank => true, :class => "inputs", :class => "label2" %>
+    <%= f.select :theme_id, sorted_themes.map { |a| [ a.name, a.id ]}, :include_blank => true, :class => "inputs", :class => "label2" %>
   </p>
 
   <p>
