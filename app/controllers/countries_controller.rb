@@ -11,8 +11,11 @@ class CountriesController < ApplicationController
     @country = Country.find params[:id]
   end
 
+
   def new
+    if @current_user && @current_user.admin
     @country = Country.new
+    end
   end
 
   def create

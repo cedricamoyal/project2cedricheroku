@@ -34,9 +34,10 @@ class StepsController < ApplicationController
 
       def destroy
         step = Step.find params[:id]
-        step.destroy
 
-        redirect_to steps_path
+        step.destroy
+        redirect_to "/trips/#{step.trip.id}"
+
       end
 
       private
