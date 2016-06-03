@@ -1,3 +1,4 @@
+<% sorted_countries = @location.countries.sort {|c1, c2| c1.name <=> c2.name } %>
 
 <div class='container'>
   <div class='row text-center'>
@@ -19,7 +20,8 @@
           <h5>Area: <span><%= @location.area %></span></h5>
           <br>
           <h5>The different countries:</h5>
-          <% @location.countries.each do |country| %>
+
+          <% sorted_countries.each do |country| %>
             <span>| <%= link_to country.name, "/countries/#{country.id}" %><span>
           <% end %>
         </div>
@@ -32,9 +34,8 @@
           </div>
     </div>
 
-<% sorted_countries = @location.countries.sort {|c1, c2| c1.name <=> c2.name } %>
-<% sorted_countries.each do |country| %>
 
+<% sorted_countries.each do |country| %>
 
 <div class='col-md-4'>
   <div class="stepsDetailsShow">
