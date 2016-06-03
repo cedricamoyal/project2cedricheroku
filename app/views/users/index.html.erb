@@ -15,6 +15,7 @@
 
             <h5>Username: <span><%= link_to( user.name, user_path(user) ) %></span></h5>
             <h5>Email: <span><%= user.email %></span></h5>
+            <h5>User admin status: <span><%= user.admin %></span></h5>
             <%= link_to(image_tag( user.image, :class => 'thumbnail'), user) %>
 
         </div>
