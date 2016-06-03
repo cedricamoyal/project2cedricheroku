@@ -8,10 +8,11 @@
 
 <% if @current_user && @current_user.admin %>
     <br>
+    <br>
     <div class='container'>
       <div class='row text-center'>
               <div class='col-md-12'>
-                    <button type='button' class='btn btn-lg btn-default'><%= link_to "Create a new trip", new_trip_path(@current_user) %></button>
+                    <button type='button' class='btn btn-lg btn-default'><%= link_to "Create a new visit", new_visit_path %></button>
               </div>
       </div>
     </div>
